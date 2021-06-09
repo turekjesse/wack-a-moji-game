@@ -9,40 +9,60 @@ const pauseBtn = document.querySelector('.pause-btn')
 const overlay = document.querySelector('.overlay')
 
 // GLOBAL VARS
-let mojiPosition;
+let mojiSquare;
 let total = 0;
 let startTime = 30;
+let timer = null;
+let timeDown = null;
 
 // FUNCTIONS
 
 // 
-const randomSquare = () => {
+function randomSquare() {
     squares.forEach(square => {
         square.classList.remove('moji')
     })
     let randomSquare = squares[Math.floor(Math.random()*9)]
-    // console.log(randomSquare)
     randomSquare.classList.add('moji')
-    mojiPosition = randomSquare.id
+    mojiSquare = randomSquare.id
 }
 
 squares.forEach(square => {
     square.addEventListener('click', () => {
-        if (square.id == mojiPosition){
+        if (square.id == mojiSquare){
             total++
-            score.innerHTML = total
+            score.innerHTML = `SCORE: 0${total}`
+            if (total > 9) {
+                score.innerHTML = `SCORE: ${total}`
+            }
         }
     })
 })
- 
-const moveMoji = () =>{
-    let timer = null;
+
+function updateTime() {
+    startTime --
+    time.innerHTML = `TIME:  0${startTime}`
+    if (startTime > 9) {
+        time.innerHTML = `TIME:  ${startTime}`
+    }
+    if (startTime === 0) {
+        clearInterval(timeDown)
+        clearInterval(timer)
+    }
+};
+
+function callUpdateTime() {
+    timeDown = setInterval(updateTime, 1000)
+}    
+
+function moveMoji() {
     timer = setInterval(randomSquare, 800)
 }
 
-const startGame = () => {
+function startGame() {
     overlay.style.display = 'none';
     moveMoji()
+    callUpdateTime()
 }
 
 
