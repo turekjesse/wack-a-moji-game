@@ -19,5 +19,12 @@ const randomSquare = () => {
     randomSquare.classList.add('moji')
 }
  
-randomSquare();
+const moveMoji = () =>{
+    let timer = null;
+    timer = setInterval(randomSquare, 800)
+}
+
+// moveMoji()
+
+
 // EVENT LISTENERS
