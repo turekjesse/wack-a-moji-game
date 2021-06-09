@@ -34,10 +34,12 @@ header{
 
 h1 {
     font-size: 2.75em;
+    /* position: absolute; */
 }
 
 .flex-container{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
 }
@@ -47,7 +49,7 @@ h1 {
 }
 
 .game-container {
-    width:400px;
+    max-width:400px;
     margin: auto;
     display:flex;
     flex-wrap: wrap;
@@ -59,10 +61,38 @@ h1 {
 .square {
     width:100px;
     height:100px;
-    background-color:darkseagreen ;
+    /* background-color:darkseagreen ; */
     border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: inset 0 -3em 3em #e9e9e9;
 }
 
 .moji {
     background-color:darkslategray;
+    box-shadow: none;
+}
+
+.game-buttons {
+    margin:40px auto;
+    text-align: center;
+}
+
+.overlay{
+    background-color: darkslategray;
+    height:100vh;
+    width:100vw;
+    opacity: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.start-btn {
+    width:150px;
+    height:75px;
+    border-radius: 7px;
+    font-size: 2em;
+}
+
+ button{
+    width:150px;
 }
