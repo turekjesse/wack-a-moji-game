@@ -81,7 +81,7 @@ function callUpdateTime() {
 }    
 
 function moveMoji() {
-    timer = setInterval(randomSquare,1200)
+    timer = setInterval(randomSquare,750)
 }
 
 function startGame() {
