@@ -11,12 +11,13 @@ const gameResults = document.querySelector('.game-results')
 // GLOBAL VARS
 let mojiSquare;
 let total = 0;
-let startTime = 30;
+let startTime = null;
 let timer = null;
 let timeDown = null;
 
 let emojis = ['😀','😁','😂','😃','😄','😅','😆','😇','😈','😉','😊','😋','😌','😍','😎','😏','😐','😑','😒','😓','😔','😕','😖','😗','😘','😙','😚','😛','😜','😝','😞','😟','😠','😡','😢','😣','😤','😥','😦','😧','😨','😩','😪','😫','😬','😭','😮','😯','😰','😱','😲','😳','😴','😵','😶','😷','🙁','🙂','🙃','🙄','🤐','🤑','🤒','🤓','🤔','🤕','🤠','🤡','🤢','🤣','🤤','🤥','🤧','🤨','🤩','🤪','🤫','🤬','🤭','🤮','🤯','🧐',
 ]
+
 // FUNCTIONS
 
 function randomSquare() {
@@ -33,11 +34,24 @@ squares.forEach(square => {
         if (square.id == mojiSquare){
             total++
             score.innerHTML = `SCORE: 0${total}`
+            square.classList.add('green')
+            if (total > 9) {
+                score.innerHTML = `SCORE: ${total}`
+            }           
+        }
+        if (square.id !== mojiSquare) {
+            total--
+            score.innerHTML = `SCORE: 0${total}`
+            square.classList.add('red')
             if (total > 9) {
                 score.innerHTML = `SCORE: ${total}`
             }
-        }
+        }        
+    square.addEventListener('mouseup', () => {
+        square.classList.remove('green')
+        square.classList.remove('red')
     })
+})
 })
 
 function clearSquares() {
@@ -65,10 +79,11 @@ function callUpdateTime() {
 }    
 
 function moveMoji() {
-    timer = setInterval(randomSquare,750)
+    timer = setInterval(randomSquare,1200)
 }
 
 function startGame() {
+    startTime = 10;
     overlay.style.display = 'none';
     moveMoji()
     callUpdateTime()
@@ -78,12 +93,13 @@ function endGame() {
     const restartBtn = document.createElement('button')
     restartBtn.innerText = 'RESTART'
     restartBtn.setAttribute('class', 'restart')
-    restartBtn.addEventListener('click', () => document.location.reload())
     gameResults.innerHTML = `
         <h2>FINAL SCORE: ${total}</h2>`
     gameResults.appendChild(restartBtn); 
-    restartBtn.addEventListener('click', () => document.location.reload())
+    // restartBtn.addEventListener('click', () => document.location.reload())
+    restartBtn.addEventListener('click', startGame)
     }
 
     // EVENT LISTENERS
 startBtn.addEventListener('click', startGame)
+
