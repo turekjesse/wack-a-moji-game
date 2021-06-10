@@ -21,9 +21,7 @@ let emojis = ['😀','😁','😂','😃','😄','😅','😆','😇','😈','�
 // FUNCTIONS
 
 function randomSquare() {
-    squares.forEach(square => {
-        square.innerHTML = ''
-    })
+    clearSquares()
     let randomSquare = squares[Math.floor(Math.random()*9)]
     randomSquare.innerText = emojis[Math.floor(Math.random()*82)]
     mojiSquare = randomSquare.id
@@ -37,7 +35,10 @@ squares.forEach(square => {
             square.classList.add('green')
             if (total > 9) {
                 score.innerHTML = `SCORE: ${total}`
-            }           
+            } 
+            if (total < 0) {
+                score.innerHTML = `SCORE: -${Math.abs(total)}`
+            }          
         }
         if (square.id !== mojiSquare) {
             total--
@@ -45,6 +46,9 @@ squares.forEach(square => {
             square.classList.add('red')
             if (total > 9) {
                 score.innerHTML = `SCORE: ${total}`
+            }
+            if (total < 0) {
+                score.innerHTML = `SCORE: -${Math.abs(total)}`
             }
         }        
     square.addEventListener('mouseup', () => {
@@ -67,8 +71,6 @@ function updateTime() {
         time.innerHTML = `TIME:  ${startTime}`
     }
     if (startTime === 0) {
-        clearInterval(timeDown)
-        clearInterval(timer)
         clearSquares()
         endGame()
     }
@@ -83,23 +85,29 @@ function moveMoji() {
 }
 
 function startGame() {
+    gameResults.innerHTML = ''
+    total = 0;
+    score.innerHTML = `SCORE: 00`
     startTime = 10;
     overlay.style.display = 'none';
+    clearSquares()
     moveMoji()
     callUpdateTime()
 }
 
 function endGame() {
+    clearInterval(timeDown)
+    clearInterval(timer)
     const restartBtn = document.createElement('button')
     restartBtn.innerText = 'RESTART'
     restartBtn.setAttribute('class', 'restart')
     gameResults.innerHTML = `
         <h2>FINAL SCORE: ${total}</h2>`
     gameResults.appendChild(restartBtn); 
-    // restartBtn.addEventListener('click', () => document.location.reload())
     restartBtn.addEventListener('click', startGame)
     }
 
     // EVENT LISTENERS
 startBtn.addEventListener('click', startGame)
-
+// resumeBtn.addEventListener('click', resumeGame)
+// pauseBtn.addEventListener('click', pauseGame)
