@@ -17,8 +17,6 @@ assignees: ''
 
 The user has 30 seconds to whack as many emojis as they can before the round ends. 
 
-Each round ends when the ball touches the ground.
-
 ## Wire Frames
 
 PLease find wireframes in the wireframe directory: https://github.com/turekjesse/wack-a-moji-game/tree/main/wireframes
