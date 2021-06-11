@@ -82,7 +82,7 @@ h1 {
     text-align: center;
 }
 
-.overlay{
+.overlay {
     background-color: darkslategray;
     height:100vh;
     width:100vw;
@@ -97,9 +97,7 @@ h1 {
     font-size: 2em;
 }
 
-
-
-.flex-item{
+.flex-item {
     font-size: 3em;
     display: flex;
     align-items: center;
