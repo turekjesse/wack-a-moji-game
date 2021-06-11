@@ -1,1 +1,1 @@
-# wack-a-moji-game
+# Whack-a-moji-game
