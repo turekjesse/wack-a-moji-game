@@ -27,6 +27,10 @@ function randomSquare() {
     mojiSquare = randomSquare.id
 }
 
+function moveMoji() {
+    timer = setInterval(randomSquare,750)
+}
+
 squares.forEach(square => {
     square.addEventListener('mousedown', () => {
         if (square.id == mojiSquare){
@@ -80,9 +84,6 @@ function callUpdateTime() {
     timeDown = setInterval(updateTime, 1000)
 }    
 
-function moveMoji() {
-    timer = setInterval(randomSquare,750)
-}
 
 function startGame() {
     gameResults.innerHTML = ''
